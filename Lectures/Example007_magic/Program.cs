@@ -50,3 +50,4 @@ while(count<1000)
     Console.WriteLine("+");
     count++; //тоже самое что и count=count+1 или count+=1
 }
+//Serpinsky's triangle
