@@ -15,9 +15,8 @@ for (int i = 0; i < array.GetLength(0); i++)
 {
     for (int j = 0; j < array.GetLength(1); j++)
     {
-        array[i,j]=new Random().NextDouble();
+        array[i,j]=Math.Round(new Random().NextDouble()*100,2);// array[i,j]=new Random().NextDouble(); если сделать так то будут дроби ~0.0001 и тд. от 0 до 1(например 0,2947162341402333)
         Console.Write ($"{array[i,j]} ");
     }
     Console.WriteLine ();
 }
-//числа которые у меня получаются это просто дроби от 0 до 1(например 0,2947162341402333), так и не понял как сделать числа например 5.5, 7.8 и т.д.

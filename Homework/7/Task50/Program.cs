@@ -11,53 +11,45 @@
 // 8 4 2 4
 // 17 -> такого числа в массиве нет
 
-Console.Write("Введите m: ");
-int m = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите n: ");
+Console.WriteLine("введите номер строки");
 int n = Convert.ToInt32(Console.ReadLine());
-Console.Clear();
-Console.WriteLine($"m = {m}, n = {n}.");
-double[,] array = new double[m, n];
-CreateArrayDouble(array);
-WriteArray(array);
-Console.Write("Введите строку элемента: ");
-int i = Convert.ToInt32(Console.ReadLine())-1;
-Console.Write("Введите введите позицию элемента в строке: ");
-int j = Convert.ToInt32(Console.ReadLine())-1;
-Console.WriteLine();
-Console.WriteLine(SearchArray(i,j,array));
+Console.WriteLine("введите номер столбца");
+int m = Convert.ToInt32(Console.ReadLine());
+int [,] numbers = new int [10,10];
+FillArrayRandomNumbers(numbers);
 
-void CreateArrayDouble(double[,] array) //Функция заполнения массива
+if (n > numbers.GetLength(0) || m > numbers.GetLength(1))
 {
-  for (int i = 0; i < m; i++)
-  {
-    for (int j = 0; j < n; j++)
-    {
-      array[i, j] = new Random().NextDouble() * 20 - 10;
-    }
-  }
+    Console.WriteLine("такого элемента нет");
+}
+else
+{
+    Console.WriteLine($"значение элемента {n} строки и столбца {m}  равно {numbers[n-1,m-1]}");
 }
 
-void WriteArray (double[,] array) //Функция вывода массива
+PrintArray(numbers);
+
+void FillArrayRandomNumbers(int[,] array)
 {
-Console.Clear();
-Console.WriteLine("Сгенерирован следующий массив");
-for (int i = 0; i < m; i++)
-  {
-      for (int j = 0; j < n; j++)
-      {
-        double alignNumber = Math.Round(array[i, j], 1);
-        Console.Write(alignNumber + " ");
-      }
-      Console.WriteLine();
-  }
+    for (int i = 0; i < array.GetLength(0); i++)
+        {        
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                array [i,j] = new Random().Next(-100, 100)/10;
+            }   
+        }
 }
-string SearchArray(int i,int j, double[,] array)//Поиск элемента
+
+void PrintArray(int[,] array)
 {
-  if ((array.GetLength(0)<i)^(array.GetLength(1)<j))
-    return "Такого значения нет";
-    else
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-      return Convert.ToString(Math.Round(array[i, j], 1));
+        Console.Write("[ ");
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write(array[i,j] + " ");
+        }   
+        Console.Write("]");
+        Console.WriteLine(""); 
     }
 }
